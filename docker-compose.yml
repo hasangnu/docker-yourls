@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+
+  yourls:
+    image: yourls
+    restart: always
+    ports:
+      - 8482:80
+    environment:
+      YOURLS_DB_HOST: mysql
+      YOURLS_DB_USER: example
+      YOURLS_DB_PASS: example  
+      YOURLS_DB_NAME: example
+      YOURLS_SITE: https://example.com
+      YOURLS_USER: example
+      YOURLS_PASS: example
+    volumes:
+     - ./data/html:/var/www/html
+
+  mysql:
+    image: hasangnu/mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: example
+      MYSQL_USER: example
+      MYSQL_PASSWORD: example
+    volumes:
+     - ./data/mariadb:/var/lib/mysql
